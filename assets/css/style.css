@@ -1,0 +1,66 @@
+#menu{
+    display: flex;
+    align-items: center;
+    height: 32px;
+}
+.secao{
+    position: relative;
+    display: flex;   
+}
+#jumbo{
+    max-width: 100%;
+    height: 380px;
+    display: flex;
+    width: 820px;
+    border: 2px solid #6C7885;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #ffff
+
+}
+.row{
+    display: flex;
+    margin: auto;
+    max-width: 100%;
+    width: 820px;
+    text-align: center;
+    margin-top: 15px;  
+}
+
+.foter{
+    display: flex;
+    max-width: 100%;
+    height: 230px;
+    background-color: #2B2E30;
+    color:#fff;
+    align-items: flex-end;
+    align-content: center;   
+}
+
+.foter p{
+    margin: 10px auto;
+}
+
+.formulario{
+    max-width: 100%;
+    width: 480px;
+    padding: 10px;
+    border: 2px solid #A6CCBE;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.formulario .btn{
+    display: flex;
+    margin: auto;
+}
+
+.cad, .log{
+    max-width: 100%;
+    width: 190px;
+    display: flex;
+    margin: auto;
+}
+.cad h1, .log h1{
+    padding-left: 10px;
+}
