@@ -25,7 +25,7 @@ class Usuarios{
     public function logar($email, $senha){
         global $pdo;
 
-        $sql = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email AND senha = :senha");
+        $sql = $pdo->prepare("SELECT nome FROM usuarios WHERE email = :email AND senha = :senha");
         $sql->bindValue(":email", $email);
         $sql->bindValue(":senha", $senha);
         $sql->execute();
@@ -33,14 +33,12 @@ class Usuarios{
         if($sql->rowCount() > 0){
             $sql = $sql->fetch();
 
-            $_SESSION["cLogin"] = $sql["id"];
+            $_SESSION["cLogin"] = $sql["nome"];
             
             return true;
         }else{
             return false;
         }
-
-
     }
 }
 ?>

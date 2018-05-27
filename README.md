@@ -1,1 +1,1 @@
-Sistema de classificados para estudo e para um portfólio, futuramente. 
+Sistema de classificados para estudo e para um portfólio. Futuramente.

@@ -29,3 +29,16 @@ CREATE TABLE anuncios(
     FOREIGN KEY(id_usuario) REFERENCES usuarios(id),
     FOREIGN KEY(id_categoria) REFERENCES categorias(id)
 )DEFAULT CHARSET = utf8;
+
+CREATE TABLE anuncios_imagens(
+    id INT NOT NULL AUTO_INCREMENT,
+    id_anuncio INT NOT NULL,
+    url VARCHAR(100) NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_anuncio) REFERENCES anuncios(id)
+)DEFAULT CHARSET = utf8;
+
+INSERT INTO categorias SET nome = "Relógios";
+INSERT INTO categorias SET nome = "Roupas";
+INSERT INTO categoras SET nome = "Eletrônicos";
+INSERT INTO categoras SET nome = "Carros";

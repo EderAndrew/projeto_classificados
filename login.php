@@ -14,7 +14,7 @@
 
         if($u->logar($email, $senha)){
             ?>
-            <script type="text/javascript">window.location.href="./"</script>
+            <script type="text/javascript">window.location.href="./";</script>
             <?php
         }else{
             ?>
@@ -32,7 +32,7 @@
     </div>
     <div class="form-group">
         <label for="senha">Senha:</label>
-        <input type="senha" name="senha" id="senha" class="form-control" />
+        <input type="password" name="senha" id="senha" class="form-control" />
     </div>
     <div class="form-group">
         <input type="submit" value="Acessar" class="btn btn-primary" />

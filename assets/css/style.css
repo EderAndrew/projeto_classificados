@@ -27,7 +27,10 @@
     text-align: center;
     margin-top: 15px;  
 }
-
+footer{
+    display: flex;
+    margin-top: 50px;
+}
 .foter{
     display: flex;
     max-width: 100%;
@@ -63,4 +66,9 @@
 }
 .cad h1, .log h1{
     padding-left: 10px;
+}
+.cliente{
+    display: flex;
+    margin: auto;
+    color: #BABBC4;
 }
