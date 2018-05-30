@@ -5,9 +5,7 @@
     </div>
     
     <?php
-    require "classes/usuarios.class.php";
-    $u = new Usuarios();
-
+    
     if(isset($_POST["email"]) && !empty($_POST["email"])){
         $email = addslashes($_POST["email"]);
         $senha = md5(addslashes($_POST["senha"]));

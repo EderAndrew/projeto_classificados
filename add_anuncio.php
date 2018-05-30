@@ -5,6 +5,7 @@ if(empty($_SESSION["cLogin"])){
     ?>
     <script type="text/javascript">window.location.href="login.php";</script>
     <?php
+    exit;
 }
 
 require "classes/anuncios.class.php";
@@ -26,7 +27,7 @@ if(isset($_POST["titulo"]) && !empty($_POST["titulo"])){
 
 <div class="container">
     <h1>Meus Anúncios - Adicionar Anúncio</h1>
-
+    <!-- enctype é para que o formulário aceite imagens -->
     <form method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="categoria">Categoria:</label>

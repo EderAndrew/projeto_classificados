@@ -6,9 +6,6 @@
 </div>
 
 <?php
-require "classes/usuarios.class.php";
-$u = new Usuarios($pdo);
-
 if(isset($_POST["nome"]) && !empty($_POST["nome"])){
     $nome = addslashes($_POST["nome"]);
     $email = addslashes($_POST["email"]);
