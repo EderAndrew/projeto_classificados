@@ -41,13 +41,20 @@ class Usuarios{
         }
     }
 
-    public function mostrarNome($id){
+    public static function getNome($id){
         global $pdo;
 
         $sql = $pdo->prepare("SELECT nome From usuarios WHERE id = :id");
         $sql->bindValue(":id", $id);
         $sql->execute();
-        
+
+        if($sql->rowCount() > 0){
+            $sql = $sql->fetch();
+
+            return $sql["nome"];
+
+        }
+           
     }
 }
 ?>

@@ -18,9 +18,10 @@
                     <?php
                         require "classes/usuarios.class.php";
                         $u = new Usuarios();
+                        
                         if(isset($_SESSION["cLogin"]) && !empty($_SESSION["cLogin"])):
                     ?>
-                    <p class="cliente">Olá, <?php echo $u->mostrarNome($_SESSION["cLogin"]); ?></p>
+                    <p class="cliente">Olá, <?= Usuarios::getNome($_SESSION['cLogin']);?></p>
                     <a class="nav-item nav-link" href="meus_anuncios.php">Meus Anúncios</a>
                     <a class="nav-item nav-link" href="sair.php">Sair</a>
                     <?php else:?>
