@@ -10,24 +10,26 @@
     <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container" id="menu">
-                <a class="navbar-brand" href="index.php">Classificados</a>
-                <div class="navbar-nav ml-auto">
-                    <?php
-                        require "classes/usuarios.class.php";
-                        $u = new Usuarios();
-                        
-                        if(isset($_SESSION["cLogin"]) && !empty($_SESSION["cLogin"])):
-                    ?>
-                    <p class="cliente">Olá, <?= Usuarios::getNome($_SESSION['cLogin']);?></p>
-                    <a class="nav-item nav-link" href="meus_anuncios.php">Meus Anúncios</a>
-                    <a class="nav-item nav-link" href="sair.php">Sair</a>
-                    <?php else:?>
-                    <a class="nav-item nav-link" href="cadastrar.php">Cadastre-se</a>
-                    <a class="nav-item nav-link" href="login.php">Login</a>
-                    <?php endif;?>
+    <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container" id="menu">
+                    <a class="navbar-brand" href="index.php">Classificados</a>
+                    <div class="navbar-nav ml-auto">
+                        <?php
+                            require "classes/usuarios.class.php";
+                            $u = new Usuarios();
+                            
+                            if(isset($_SESSION["cLogin"]) && !empty($_SESSION["cLogin"])):
+                        ?>
+                        <p class="cliente">Olá, <?= Usuarios::getNome($_SESSION['cLogin']);?></p>
+                        <a class="nav-item nav-link" href="meus_anuncios.php">Meus Anúncios</a>
+                        <a class="nav-item nav-link" href="sair.php">Sair</a>
+                        <?php else:?>
+                        <a class="nav-item nav-link" href="cadastrar.php">Cadastre-se</a>
+                        <a class="nav-item nav-link" href="login.php">Login</a>
+                        <?php endif;?>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+    </header>
+    

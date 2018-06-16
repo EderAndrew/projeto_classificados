@@ -45,11 +45,11 @@ if(isset($_POST["titulo"]) && !empty($_POST["titulo"])){
         </div>
         <div class="form-group">
             <label for="titulo">Titulo:</label>
-            <input type="text" name="titulo" id="titulo" class="form-control">
+            <input type="text" name="titulo" id="titulo" class="form-control" >
         </div>
         <div class="form-group">
             <label for="valor">Valor:</label>
-            <input type="text" name="valor" id="valor" class="form-control">
+            <input type="text" name="valor" id="valor" class="form-control" >
         </div>
         <div class="form-group">
             <label for="descricao">Descrição:</label>
