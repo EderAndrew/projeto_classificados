@@ -14,8 +14,15 @@
         $valor = addslashes($_POST["valor"]);
         $descricao = addslashes($_POST["descricao"]);
         $estado = addslashes($_POST["estado"]);
+        //caso não ocorra nenhum envio de fotos...
+        if(isset($_FILES["fotos"])){
+            $fotos = $_FILES["fotos"];
+        } else{//ja conseidera como vazio
+            $fotos = array();
+        }
+        
 
-        $a->editAnuncio($titulo, $categoria, $valor, $descricao, $estado, $_GET['id']);
+        $a->editAnuncio($titulo, $categoria, $valor, $descricao, $estado, $fotos, $_GET['id']);
         ?>
         <div class="alert alert-success">Produto editado com sucesso!</div>
         <?php
@@ -71,6 +78,23 @@
                     <option value="1" <?php echo ($info['estado']=='1')?'selected="selected"':''; ?>>Bom</option>
                     <option value="2" <?php echo ($info['estado']=='2')?'selected="selected"':''; ?>>Ótimo</option>
                 </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="add_foto">Fotos do anúncio:</label><br>
+                <input type="file" name="fotos[]" multiple/>
+                <br><br>
+                <div class="card">
+                    <div class="card-header">Fotos do Anúncio</div>
+                    <div class="card-body">
+                        <?php foreach($info['fotos'] as $foto):?>
+                            <div class="foto_item">
+                                <img src="assets/images/anuncios/<?php echo $foto['url']; ?>" class="img-thumbnail" border="0" />
+                                <a href="" class="btn btn-success">Excluir imagem</a>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
             </div>
             <input type="submit" value="Salvar" class="btn btn-primary" />
         </form>
