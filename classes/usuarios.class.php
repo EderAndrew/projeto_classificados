@@ -56,5 +56,20 @@ class Usuarios{
         }
            
     }
+
+    public function getTotalUsuarios(){
+        global $pdo;
+
+        $sql = $pdo->prepare("SELECT COUNT(*) as u FROM usuarios");
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $row = $sql->fetch();
+
+            $sql = $row["u"];
+        }
+
+        return $sql;
+    }
 }
 ?>

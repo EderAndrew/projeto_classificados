@@ -1,5 +1,21 @@
 <?php
 class Anuncios{
+    public function getTotalAnuncios(){
+        global $pdo;
+
+        $sql = $pdo->prepare("SELECT COUNT(*) as c FROM anuncios");
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $row = $sql->fetch();
+
+            $sql = $row["c"];
+        }
+
+        return $sql;
+
+    }
+
     public function getMeusAnuncios(){
         global $pdo;
 
@@ -20,7 +36,7 @@ class Anuncios{
 
         $array = array();
 
-        $sql = $pdo->prepare("SELECT * FROM anuncios WHERE id = :id");
+        $sql = $pdo->prepare("SELECT *, (select categorias.nome from categorias where categorias.id = anuncios.id_categoria) as categoria, (select usuarios.telefone from usuarios where usuarios.id = anuncios.id_usuario) as telefone FROM anuncios WHERE id = :id");
         $sql->bindValue(":id", $id);
         $sql->execute();
 
@@ -28,7 +44,7 @@ class Anuncios{
             $array = $sql->fetch();
             $array['fotos'] = array();
 
-            $sql = $pdo->prepare("SELECT id,url FROM anuncios_imagens WHERE id_anuncio = :id_anuncio");
+            $sql = $pdo->prepare("SELECT id, url FROM anuncios_imagens WHERE id_anuncio = :id_anuncio");
             $sql->bindValue(":id_anuncio", $id);
             $sql->execute();
 
@@ -69,7 +85,7 @@ class Anuncios{
         if(count($fotos) > 0){
             for($q=0; $q < count($fotos['tmp_name']); $q++){
                 $tipo = $fotos['type'][$q];
-                //se tipo de arquivo for um jpg ou png
+                //se tipo de arquivo estiver dentro do array
                 if(in_array($tipo, array('image/jpeg', 'image/png'))){
                     $tmpname = md5(time().rand(0,9999)).'.jpg';
                     move_uploaded_file($fotos['tmp_name'][$q], 'assets/images/anuncios/'.$tmpname);
@@ -113,6 +129,24 @@ class Anuncios{
         }
     }
 
+    public function getUltimosAnuncios($page, $perPage){
+        global $pdo;
+
+        $offset = ($page - 1) * $perPage;
+
+        $array = array();
+        $sql = $pdo->prepare("SELECT *, 
+            (select anuncios_imagens.url from anuncios_imagens where anuncios_imagens.id_anuncio = anuncios.id limit 1) as url, (select categorias.nome from categorias where categorias.id = anuncios.id_categoria) as categoria FROM anuncios ORDER BY id DESC LIMIT $offset, $perPage");
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $array = $sql->fetchAll();
+        }
+        return $array;
+
+
+    }
+
     public function excluirAnuncio($id){
         global $pdo;
 
@@ -136,6 +170,9 @@ class Anuncios{
         if($sql->rowCount() > 0){
             $row = $sql->fetch();
             $id_anuncio = $row['id_anuncio'];
+            if (is_file("assets/img/anuncios/".$row['url'])){
+                unlink("assets/img/anuncios/".$row['url']);
+            }
         }
 
         $sql = $pdo->prepare("DELETE FROM anuncios_imagens WHERE id = :id");
@@ -144,4 +181,6 @@ class Anuncios{
 
         return $id_anuncio;
     }
+
+    
 }

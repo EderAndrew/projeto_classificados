@@ -20,8 +20,7 @@
         } else{//ja conseidera como vazio
             $fotos = array();
         }
-        
-
+    
         $a->editAnuncio($titulo, $categoria, $valor, $descricao, $estado, $fotos, $_GET['id']);
         ?>
         <div class="alert alert-success">Produto editado com sucesso!</div>
@@ -90,7 +89,7 @@
                         <?php foreach($info['fotos'] as $foto):?>
                             <div class="foto_item">
                                 <img src="assets/images/anuncios/<?php echo $foto['url']; ?>" class="img-thumbnail" border="0" />
-                                <a href="" class="btn btn-success">Excluir imagem</a>
+                                <a href="excluir-foto.php?id=<?php echo $foto['id']; ?>" class="btn btn-success">Excluir imagem</a>
                             </div>
                         <?php endforeach; ?>
                     </div>
